@@ -1,4 +1,5 @@
 import numpy as np
+from numpy.linalg import norm
 from tensorflow import keras
 
 
@@ -68,6 +69,8 @@ def check_torch_keras_error(model, k_model, input_np, epsilon=1e-5, change_order
         keras_output = k_model.predict(input_np)
 
     error = np.max(pytorch_output - keras_output)
-
-    assert (error < epsilon), "error is {}".format(error)
+    
+    errornorm = norm(pytorch_output.ravel() - keras_output.ravel())/norm(pytorch_output.ravel())
+    
+    assert (error < epsilon), "error is {}; errornorm is {}".format(error, errornorm)
     return error
