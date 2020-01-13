@@ -46,7 +46,7 @@ if __name__ == '__main__':
                             onnx_model = onnx.load('_tmpnet.onnx')
                             k_model = onnx_to_keras(onnx_model, ['test_in'])
 
-                            error = check_torch_keras_error(model, k_model, input_np, epsilon=1e-3)
+                            error = check_torch_keras_error(model, k_model, input_np, epsilon=1e-2)
                             print('Error:', error)
 
                             if max_error < error:
