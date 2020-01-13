@@ -25,7 +25,8 @@ if __name__ == '__main__':
         for padding in [0, 1, 3, 5]:
             for stride in [1, 2, 3]:
                 for bias in [True, False]:
-                    for dilation in [1, 2, 3]:
+#                     for dilation in [1, 2, 3]:
+                    for dilation in [1, 2]:
                         for groups in [1, 3]:
                             # ValueError: strides > 1 not supported in conjunction with dilation_rate > 1
                             if stride > 1 and dilation > 1:
