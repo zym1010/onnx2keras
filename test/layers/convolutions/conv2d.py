@@ -26,7 +26,7 @@ if __name__ == '__main__':
             for stride in [1, 2, 3]:
                 for bias in [True, False]:
 #                     for dilation in [1, 2, 3]:
-                    for dilation in [1, 2]:
+                    for dilation in [3,]:
                         for groups in [1, 3]:
                             # ValueError: strides > 1 not supported in conjunction with dilation_rate > 1
                             if stride > 1 and dilation > 1:
@@ -46,7 +46,7 @@ if __name__ == '__main__':
                             onnx_model = onnx.load('_tmpnet.onnx')
                             k_model = onnx_to_keras(onnx_model, ['test_in'])
 
-                            error = check_torch_keras_error(model, k_model, input_np)
+                            error = check_torch_keras_error(model, k_model, input_np, epsilon=1e-3)
                             print('Error:', error)
 
                             if max_error < error:
